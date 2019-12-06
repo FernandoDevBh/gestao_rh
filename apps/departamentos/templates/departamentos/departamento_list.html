@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <a href="{% url 'create_departamento' %}" class="btn btn-info">Novo</a>
+    <ul>
+        {% for obj in object_list %}
+            <li>
+                <a href="{% url 'update_departamento' obj.id %}">
+                    {{ obj }}
+                </a>
+                <a href="{% url 'delete_departamento' obj.id %}">Excluir</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock main %}
