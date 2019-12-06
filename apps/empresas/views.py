@@ -4,9 +4,11 @@ from django.views.generic.edit import CreateView, UpdateView
 from apps.empresas.models import Empresa
 
 
-class EmpresaCreate(CreateView):
+class EmpresaView():
     model = Empresa
-    fields = ('nome',)
+    fields = ('nome', )
+
+class EmpresaCreate(EmpresaView, CreateView):    
 
     def form_valid(self, form):
         obj = form.save()
@@ -15,6 +17,5 @@ class EmpresaCreate(CreateView):
         funcionario.save()
         return HttpResponse('Ok')
 
-class EmpresaEdit(UpdateView):
-    model = Empresa
-    fields = ('nome',)
+class EmpresaEdit(EmpresaView, UpdateView):
+    pass    

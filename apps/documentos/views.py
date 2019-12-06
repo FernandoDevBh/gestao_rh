@@ -7,18 +7,18 @@ from django.views.generic import (
 from .models import Documento
 from django.urls import reverse_lazy
 
-
-class DocumentoList(ListView):
-    model = Documento
-
-class DocumentoNovo(CreateView):
+class DocumentoView():
     model = Documento
     fields = ('descricao','pertence',)
 
-class DocumentoEdit(UpdateView):
-    model = Documento
-    fields = ('descricao','pertence',)
+class DocumentoList(DocumentoView, ListView):
+    pass
 
-class DocumentoDelete(DeleteView):
-    model = Documento
-    success_url = reverse_lazy('list_documentos')
+class DocumentoNovo(DocumentoView, CreateView):
+    pass
+
+class DocumentoEdit(DocumentoView, UpdateView):
+    pass
+
+class DocumentoDelete(DocumentoView, DeleteView):
+    pass

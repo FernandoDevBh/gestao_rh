@@ -9,25 +9,24 @@ from django.contrib.auth.models import User
 from .models import Funcionario
 from django.urls import reverse_lazy
 
-class FuncionariosList(ListView):
+class FuncionarioView():
     model = Funcionario
+    fields = ('nome', 'departamentos')
 
+class FuncionariosList(FuncionarioView, ListView):
+    
     def get_queryset(self):
         empresa_logada = self.request.user.funcionario.empresa
         queryset = Funcionario.objects.filter(empresa=empresa_logada)
         return queryset
 
-class FuncionarioEdit(UpdateView):
-    model = Funcionario
-    fields = ('nome', 'departamentos')
+class FuncionarioEdit(FuncionarioView, UpdateView):
+    pass
 
-class FuncionarioDelete(DeleteView):
-    model = Funcionario
+class FuncionarioDelete(FuncionarioView, DeleteView):    
     success_url = reverse_lazy('list_funcionarios')
 
-class FuncionarioNovo(CreateView):
-    model = Funcionario
-    fields = ('nome', 'departamentos')
+class FuncionarioNovo(FuncionarioView, CreateView):    
 
     def form_valid(self, form): 
         funcionario = form.save(commit=False)
