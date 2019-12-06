@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <a href="{% url 'create_registros_hora_extra' %}" class="btn btn-info">Novo</a>
+    <ul>
+        {% for obj in object_list %}
+            <li>
+                <a href="{% url 'update_registros_hora_extra' obj.id %}">
+                    {{ obj }}
+                </a>
+                <a href="{% url 'delete_registros_hora_extra' obj.id %}">Excluir</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock main %}
