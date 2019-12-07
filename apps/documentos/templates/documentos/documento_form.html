@@ -2,9 +2,9 @@
 {% load bootstrap %}
 
 {% block main %}
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|bootstrap }}
-        <button type="submit" class="btn btn-main">Salvar</button>
+        <button type="submit" class="btn btn-main">Adicionar</button>
     </form>
 {% endblock main %}

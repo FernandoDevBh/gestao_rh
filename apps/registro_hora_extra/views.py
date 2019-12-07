@@ -7,18 +7,20 @@ from django.views.generic import (
 from .models import RegistroHoraExtra
 from django.urls import reverse_lazy
 
-class RegistroHoraExtra():
+class RegistroHoraExtraView():
     model = RegistroHoraExtra
-    fields = ('motivo','funcionario',)
+    fields = ('motivo','funcionario','horas')
 
-class RegistroHoraExtraList(RegistroHoraExtra, ListView):
-    pass
+class RegistroHoraExtraList(RegistroHoraExtraView, ListView):
+    def get_queryset(self):
+        empresa = self.request.user.funcionario.empresa
+        return RegistroHoraExtra.objects.filter(funcionario__empresa=empresa)
 
-class RegistroHoraExtraNovo(RegistroHoraExtra, CreateView):
+class RegistroHoraExtraNovo(RegistroHoraExtraView, CreateView):
     pass    
 
-class RegistroHoraExtraEdit(RegistroHoraExtra, UpdateView):
+class RegistroHoraExtraEdit(RegistroHoraExtraView, UpdateView):
     pass    
 
-class RegistroHoraExtraDelete(RegistroHoraExtra, DeleteView):    
+class RegistroHoraExtraDelete(RegistroHoraExtraView, DeleteView):    
     success_url = reverse_lazy('list_registros_hora_extra')

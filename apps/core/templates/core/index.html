@@ -4,8 +4,11 @@
     <div class="row">
         <div class="col-sm">
             Olá {{ usuario.funcionario.nome }}
-            <a href="{% url 'list_funcionarios' %}">Gerenciar Funcionários</a>
-            <a href="{% url 'list_departamentos' %}">Gerenciar Departamentos</a>
+            <ul>
+                <li><a href="{% url 'list_funcionarios' %}">Gerenciar Funcionários</a></li>
+                <li><a href="{% url 'list_departamentos' %}">Gerenciar Departamentos</a></li>
+                <li><a href="{% url 'list_registros_hora_extra' %}">Gerenciar Banco de Horas</a></li>
+            </ul>
         </div>
         <div class="col-sm">
         One of three columns
