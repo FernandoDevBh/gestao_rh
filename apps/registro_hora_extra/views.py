@@ -35,5 +35,6 @@ class RegistroHoraExtraEdit(UpdateView):
         kwargs.update({ 'user': self.request.user })
         return kwargs
 
-class RegistroHoraExtraDelete(DeleteView):    
+class RegistroHoraExtraDelete(DeleteView):
+    model = RegistroHoraExtra
     success_url = reverse_lazy('list_registros_hora_extra')
