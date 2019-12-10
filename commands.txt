@@ -6,3 +6,6 @@ python manage.py startapp <app_name>
 cd venv\scripts python -m pip install <package>
 
 alias python='winpty python.exe'
+
+máquina linux:
+sudo apt-get update && sudo apt-get upgrade
