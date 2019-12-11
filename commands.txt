@@ -9,3 +9,8 @@ alias python='winpty python.exe'
 
 máquina linux:
 sudo apt-get update && sudo apt-get upgrade
+
+uWSGI
+pip install wheel
+apt-get install build-essential python-dev
+sudo apt-get install python3.6-dev
