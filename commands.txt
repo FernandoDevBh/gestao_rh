@@ -82,10 +82,49 @@ sudo /etc/init.d/nginx restart
 
 uwsgi --socket gestao_rh/mysite.sock --wsgi-file teste.py --chmod=666
 
-uwsgi --socket mysite.sock --module mysite.wsgi --chmod-socket=664
+uwsgi --socket mysite.sock --module mysite.wsgi --chmod-socket=666
 
 cd <back to home>
 pwd <pegar o caminho>
 /home/ubuntu/gestao_rh 
 
 python manage.py collectstatic
+
+
+-- ir para raiz
+vim uwsgi.sh
+conteudo
+#!/bin/bash
+/home/ubunto/venv/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
+
+ sudo chmod 744 uwsgi.sh
+
+systemctl
+ -- ir para 
+ /etc/systemd/system/
+ -- criar o arquivo
+vim gestao_rh.service
+[Unit]
+Description=My Miscellaneous Service
+After=network.target
+
+[Service]
+ExecStart=/home/ubuntu/uwsgi.sh
+Type=forking
+User=ubuntu
+[Install]
+WantedBy=default.target
+
+sudo chmod 644 /etc/systemd/system/gestao_rh.service
+
+-- Reload nos arquvivos
+systemctl daemon-reload
+
+--redefinir senha
+sudo passwd ubuntu
+
+--habilita o serviço
+systemctl enable gestao_rh.service
+
+-- Inicia Serviço
+systemctl start gestao_rh.service
