@@ -15,6 +15,7 @@ uWSGI
 pip install wheel
 apt-get install build-essential python-dev
 sudo apt-get install python3.6-dev
+pip install uwsgi
 
 nginx
 Instalação:
@@ -57,7 +58,7 @@ server {
     # the port your site will be served on
     listen      8000;
     # the domain name it will serve for
-    server_name 3.134.92.135; # substitute your machine's IP address or FQDN
+    server_name 3.136.216.113; # substitute your machine's IP address or FQDN
     charset     utf-8;
 
     # max upload size
@@ -78,6 +79,10 @@ server {
         include     /home/ubuntu/gestao_rh/uwsgi_params; # the uwsgi_params file you installed
     }
 }
+
+cd /etc/nginx/sites-enable
+
+ 
 
 sudo /etc/init.d/nginx restart
 
