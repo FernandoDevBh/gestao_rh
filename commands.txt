@@ -101,7 +101,7 @@ python manage.py collectstatic
 vim uwsgi.sh
 conteudo
 #!/bin/bash
-/home/ubunto/venv/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
+/home/ubuntu/venv/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
 
  sudo chmod 744 uwsgi.sh
 
@@ -121,7 +121,7 @@ User=ubuntu
 [Install]
 WantedBy=default.target
 
-sudo chmod 644 /etc/systemd/system/gestao_rh.service
+sudo chmod 664 /etc/systemd/system/gestao_rh.service
 
 -- Reload nos arquvivos
 systemctl daemon-reload
@@ -134,3 +134,5 @@ systemctl enable gestao_rh.service
 
 -- Inicia Serviço
 systemctl start gestao_rh.service
+
+https://luxagraf.net/src/how-set-django-uwsgi-systemd-debian-8
