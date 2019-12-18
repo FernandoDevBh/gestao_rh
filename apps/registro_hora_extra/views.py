@@ -26,14 +26,24 @@ class RegistroHoraExtraNovo(CreateView):
         kwargs.update({ 'user': self.request.user })
         return kwargs
 
-class RegistroHoraExtraEdit(UpdateView):
+class RegistroHoraExtraEditBase(UpdateView):
     model = RegistroHoraExtra
     form_class = RegistroHoraExtraForm
 
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
     def get_form_kwargs(self):
-        kwargs = super(RegistroHoraExtraEdit, self).get_form_kwargs()
+        kwargs = super(RegistroHoraExtraEditBase, self).get_form_kwargs()
         kwargs.update({ 'user': self.request.user })
         return kwargs
+
+class RegistroHoraExtraEdit(RegistroHoraExtraEditBase):
+    def get_success_url(self):
+        return reverse_lazy('update_registros_hora_extra', args=[self.object.id])
+
+class RegistroHoraExtraEditFuncionario(RegistroHoraExtraEditBase):
+    pass
 
 class RegistroHoraExtraDelete(DeleteView):
     model = RegistroHoraExtra

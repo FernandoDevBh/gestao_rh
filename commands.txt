@@ -96,6 +96,22 @@ pwd <pegar o caminho>
 
 python manage.py collectstatic
 
+--emperor module
+# create a directory for the vassals
+sudo mkdir /etc/uwsgi
+
+[uwsgi]
+emperor = /etc/uwsgi/vassals
+uid = www-data
+gid = www-data
+limit-as = 1024
+logto = /tmp/uwsgi.log
+
+sudo mkdir /etc/uwsgi/vassals
+# symlink from the default config directory to your config file
+sudo ln -s /home/ubuntu/gestao_rh/uwsgi.ini /etc/uwsgi/vassals/
+# run the emperor
+uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data
 
 -- ir para raiz
 vim uwsgi.sh

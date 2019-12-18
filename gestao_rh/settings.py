@@ -25,7 +25,7 @@ SECRET_KEY = 'n5t8v=%zxt%3yn2_pa@b33smwkf9lbe$0xp^h#1jy+g^y)$x_q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.133.76.104']
+ALLOWED_HOSTS = ['3.133.76.104', 'localhost']
 
 
 # Application definition
@@ -131,10 +131,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "estaticos/")
+    os.path.join(BASE_DIR, "staticfiles"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 LOGIN_REDIRECT_URL = 'home'
 
