@@ -3,6 +3,7 @@ from .views import (
     RegistroHoraExtraList,
     RegistroHoraExtraNovo,
     RegistroHoraExtraEdit,
+    CompensarHoraExtra,
     RegistroHoraExtraEditFuncionario,
     RegistroHoraExtraDelete
 )
@@ -22,6 +23,11 @@ urlpatterns = [
         'editar/<int:pk>', 
         RegistroHoraExtraEdit.as_view(), 
         name='update_registros_hora_extra'
+    ),
+    path(
+        'compensar-hora-extra/<int:pk>/', 
+        CompensarHoraExtra.as_view(), 
+        name='compensou_hora_extra'
     ),
     path(
         'editar-funcionario/<int:pk>', 

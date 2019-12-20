@@ -1,3 +1,4 @@
+from django.views import View
 from django.views.generic import (
     ListView,
     UpdateView,
@@ -7,6 +8,8 @@ from django.views.generic import (
 from .models import RegistroHoraExtra
 from django.urls import reverse_lazy
 from .forms import RegistroHoraExtraForm
+from django.http import HttpResponse
+import json
 
 
 class RegistroHoraExtraList(ListView):
@@ -41,6 +44,17 @@ class RegistroHoraExtraEditBase(UpdateView):
 class RegistroHoraExtraEdit(RegistroHoraExtraEditBase):
     def get_success_url(self):
         return reverse_lazy('update_registros_hora_extra', args=[self.object.id])
+
+class CompensarHoraExtra(View):
+    def post(self, request, *args, **kwargs):
+        registro = RegistroHoraExtra.objects.get(id=kwargs['pk'])
+        registro.compensar = True
+        registro.save()        
+        response = json.dumps({ 
+            'mensagem': 'Requisição Executada',
+            'horas': float(registro.funcionario.total_horas_extra)
+        })
+        return HttpResponse(response, content_type='application/json')
 
 class RegistroHoraExtraEditFuncionario(RegistroHoraExtraEditBase):
     pass

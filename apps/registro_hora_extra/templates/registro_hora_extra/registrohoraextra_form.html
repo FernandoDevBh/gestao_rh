@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
 {% load bootstrap %}
 
 
@@ -7,5 +10,14 @@
         {% csrf_token %}
         {{ form|bootstrap }}
         <button type="submit" class="btn btn-main">Salvar</button>
+        <button class="btn btn-info" type="button" onclick="compensarHoraExtra({{object.id}})">Compensar Hora Extra</button>
     </form>
+    <h2 id="horas_atualizadas">Quantidade de Horas: {{ object.funcionario.total_horas_extra }}</h2>
+    <p id="mensagem"></p>
+    
 {% endblock main %}
+
+{% block static %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/funcoes-ajax.js' %}"></script>
+{% endblock static %}
