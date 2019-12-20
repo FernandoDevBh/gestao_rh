@@ -15,11 +15,12 @@ function request (contexto) {
     })
 }
 
-function compensarHoraExtra(id){    
+function compensarHoras(id, compensar){ 
     const contexto = {};
     contexto.url = `/horas-extras/compensar-hora-extra/${id}/`;
     contexto.token = getToken();
     contexto.type = 'POST';
+    contexto.data = { compensar: compensar ? 1 : 0 }
     contexto.callBack = function({mensagem, horas}){
         $('#mensagem').text(mensagem);
         $('#horas_atualizadas').text(`Quantidade de Horas: ${horas}`);

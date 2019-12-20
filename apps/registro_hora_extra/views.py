@@ -43,16 +43,19 @@ class RegistroHoraExtraEditBase(UpdateView):
 
 class RegistroHoraExtraEdit(RegistroHoraExtraEditBase):
     def get_success_url(self):
-        return reverse_lazy('update_registros_hora_extra', args=[self.object.id])
+        return reverse_lazy('update_registros_hora_extra', args=[self.object.id])        
 
 class CompensarHoraExtra(View):
+    def compensarHoras(self, id, compensar):
+        registro = RegistroHoraExtra.objects.get(id=id)
+        registro.compensar = bool(int(compensar))
+        registro.save()
+        return float(registro.funcionario.total_horas_extra)
+
     def post(self, request, *args, **kwargs):
-        registro = RegistroHoraExtra.objects.get(id=kwargs['pk'])
-        registro.compensar = True
-        registro.save()        
         response = json.dumps({ 
             'mensagem': 'Requisição Executada',
-            'horas': float(registro.funcionario.total_horas_extra)
+            'horas': self.compensarHoras(kwargs['pk'], request.POST.get('compensar'))
         })
         return HttpResponse(response, content_type='application/json')
 
