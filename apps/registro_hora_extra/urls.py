@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import (
+    ExportarCsv,
+    ExportarExcel,
     RegistroHoraExtraList,
     RegistroHoraExtraNovo,
     RegistroHoraExtraEdit,
@@ -39,4 +41,14 @@ urlpatterns = [
         RegistroHoraExtraDelete.as_view(),
         name='delete_registros_hora_extra'
     ),
+    path(
+        'exportar-csv/', 
+        ExportarCsv.as_view(),
+        name='export_csv'
+    ),
+    path(
+        'exportar-excel/', 
+        ExportarExcel.as_view(),
+        name='export_excel'
+    )
 ]
