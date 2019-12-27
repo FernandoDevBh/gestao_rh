@@ -18,12 +18,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import routers
+from apps.funcionarios.api.views import FuncionarioViewSet
+from apps.registro_hora_extra.api.views import RegistroHoraExtraViewSet
 from apps.core.views import UserViewSet, GroupViewSet
 
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+router.register(r'api/funcionarios', FuncionarioViewSet)
+router.register(r'api/banco-horas', RegistroHoraExtraViewSet)
 
 urlpatterns = [
     path('', include('apps.core.urls')),
