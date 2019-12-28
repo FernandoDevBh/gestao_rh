@@ -10,6 +10,9 @@ alias python='winpty python.exe'
 
 máquina linux:
 sudo apt-get update && sudo apt-get upgrade
+create alias for python
+on root sudo vim/nano .bashrc
+alias python=python3
 
 uWSGI
 pip install wheel
