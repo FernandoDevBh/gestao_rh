@@ -20,6 +20,7 @@ pkg-resources==0.0.0
 pylint==2.4.4
 PyPDF2==1.26.0
 pytz==2019.3
+redis==3.3.11
 reportlab==3.5.32
 six==1.13.0
 sqlparse==0.3.0
