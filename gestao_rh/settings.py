@@ -25,7 +25,7 @@ SECRET_KEY = 'n5t8v=%zxt%3yn2_pa@b33smwkf9lbe$0xp^h#1jy+g^y)$x_q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.133.76.104', 'localhost']
+ALLOWED_HOSTS = ['3.133.76.104','192.168.0.145', 'localhost']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'bootstrapform',
+    'django_celery_results',
     'apps.empresas',
     'apps.funcionarios',
     'apps.departamentos',
@@ -141,3 +142,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'login'
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+CELERY_CACHE_BACKEND = 'django-cache'
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_ACEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
