@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'bootstrapform',
     'django_celery_results',
+    'django_celery_beat',
     'apps.empresas',
     'apps.funcionarios',
     'apps.departamentos',
