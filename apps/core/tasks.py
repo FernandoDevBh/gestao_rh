@@ -18,7 +18,7 @@ def send_relatorio():
         'Relatório Celery',
         'Relatorio geral de funcionarios %f.' %total,
         settings.EMAIL_HOST_USER,
-        ['fernando.sferreira@sonda.com'],
+        ['fsffernando@hotmail.com'],
         fail_silently=False,
     )
     return True
