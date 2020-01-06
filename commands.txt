@@ -160,4 +160,38 @@ https://luxagraf.net/src/how-set-django-uwsgi-systemd-debian-8
 
 ativar task celery
 celery -A gestao_rh worker -l info
+ celery -A gestao_rh worker -B
 celery -A gestao_rh beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+celery -A gestao_rh worker -l info -B --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+--rodar o celery no systemctl
+--criar o arquivo celery.service no /etc/system/system
+--nesse caso inclui o -B para rodar os dois processos juntos, mas a melhor prática é criar um service para o beat e outro para execução.
+sudo vim /etc/systemd/system/celery.service
+
+[Unit]
+Description=Celery Service
+After=network.target
+
+[Service]
+Type=forking
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/gestao_rh
+ExecStart=/bin/sh -c '/home/ubuntu/venv/bin/celery -A gestao_rh worker -l info -B --scheduler django_celery_beate.schedulers:DatabaseScheduler &'
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+
+sudo chmod 664 /etc/systemd/system/celery.service
+
+-- Reload nos arquvivos
+systemctl daemon-reload
+
+--habilita o serviço
+systemctl enable celery.service
+
+-- Inicia Serviço
+systemctl start celery.service

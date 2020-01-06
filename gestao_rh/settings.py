@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'apps.departamentos',
     'apps.documentos',
     'apps.registro_hora_extra',
-    'apps.core'
+    'apps.core',
+    'apps.app_antiga'
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'antigo': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'dbantido.sqlite3'),
     }
 }
 
@@ -160,3 +165,5 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 
 EMAIL_USE_TLS = True
+
+DATABASE_ROUTERS = ['gestao_rh.DBRoutes.DBRoutes']
