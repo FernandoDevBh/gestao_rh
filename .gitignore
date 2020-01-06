@@ -9,3 +9,5 @@ static
 *.dat
 *.pid
 *.dir
+
+gestao_rh/local_settings.py
